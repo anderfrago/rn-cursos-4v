@@ -1,18 +1,12 @@
 import React from "react";
-import { View,  FlatList, Image } from "react-native";
-import {  StyleSheet, ScrollView } from "react-native";
+import { View, FlatList, Image } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 // React-Native-Elements
-import { colors } from "react-native-elements";
-import {
-  Left,
-  Right,
-  Container,
-  Content,
-  Text,
-} from "native-base";
+import { lightColors as colors } from "@rneui/themed";
+import { Left, Right, Container, Content, Text } from "native-base";
 // 4Vientos Components
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 
 const DATA = [
   {
@@ -45,7 +39,7 @@ export function AboutScreen({ navigation }) {
   const renderItem = ({ item }) => <Item title={item.text} />;
   return (
     <Container>
-        <Header  navigation={navigation} />
+      <Header navigation={navigation} />
 
       <Content>
         <ScrollView
@@ -54,12 +48,12 @@ export function AboutScreen({ navigation }) {
         >
           <View style={styles.body}>
             <View style={styles.sectionHeaderContainer}>
-              <View style={{flex: 1, flexDirection: 'row'}}>
-                  <Image source={require("../../../assets/images/brujula.png")} />
-                  <Text style={styles.sectionHeaderTitle}>
-                    Sobre nosotros
-                  </Text>
-              </View>              
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                <Image
+                  source={require("./../../../assets/images/brujula.png")}
+                />
+                <Text style={styles.sectionHeaderTitle}>Sobre nosotros</Text>
+              </View>
               <Text style={styles.sectionHeaderSubtitle}>
                 Cuatrovientos es un Centro Integrado Privado Concertado de
                 Formación Profesional gestionado por una cooperativa de
@@ -88,7 +82,7 @@ export function AboutScreen({ navigation }) {
 const styles = StyleSheet.create({
   sectionHeaderContainer: {
     margin: 12,
-    paddingHorizontal:  4,
+    paddingHorizontal: 4,
   },
   sectionHeaderTitle: {
     fontSize: 24,
@@ -108,7 +102,7 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: colors.white,
   },
-  sectionContainer: { 
+  sectionContainer: {
     paddingHorizontal: 24,
   },
 });

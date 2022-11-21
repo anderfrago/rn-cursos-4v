@@ -5,10 +5,9 @@ import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 
 import PropTypes from "prop-types";
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 // React-Native-Elements
-import { colors } from "react-native-elements";
-
+import { lightColors as colors } from "@rneui/themed";
 
 import {
   Container,
@@ -19,7 +18,6 @@ import {
   Button,
   Right,
 } from "native-base";
-
 
 export class Course extends React.Component {
   constructor(props) {
@@ -33,38 +31,42 @@ export class Course extends React.Component {
   }
 
   render() {
-    let { id, name, description, level, type, duration, navigation } = this.props;
+    let { id, name, description, level, type, duration, navigation } =
+      this.props;
 
     return (
       <Container>
         <Content>
           <Card style={styles.sectionContainer}>
-          <CardItem header >
-              <Text  style={styles.sectionTitle}>{name}</Text>
+            <CardItem header>
+              <Text style={styles.sectionTitle}>{name}</Text>
             </CardItem>
             <CardItem>
               <Content>
-                <Text  style={styles.sectionDescription}>{description}</Text>
-                <CardItem >
+                <Text style={styles.sectionDescription}>{description}</Text>
+                <CardItem>
                   <Text>{level}</Text>
                 </CardItem>
-                <CardItem >
+                <CardItem>
                   <Text>Familia profesional:</Text>
                   <Text> {type}</Text>
                 </CardItem>
-                <CardItem >
+                <CardItem>
                   <Text>Duración: {duration}</Text>
                 </CardItem>
               </Content>
             </CardItem>
             <CardItem footer>
-            <Button  rounded success
-              onPress={()=>navigation.navigate("Editar curso", {id: id})}>
-                    <Text  style={styles.buttonText}>Editar</Text>
+              <Button
+                rounded
+                success
+                onPress={() => navigation.navigate("Editar curso", { id: id })}
+              >
+                <Text style={styles.buttonText}>Editar</Text>
               </Button>
               <Right />
               <Button rounded danger onPress={() => this.handleDelete(id)}>
-                <Text  style={styles.buttonText}>Borrar</Text>
+                <Text style={styles.buttonText}>Borrar</Text>
               </Button>
             </CardItem>
           </Card>
@@ -98,25 +100,23 @@ function mapDispatchToProps(dispatch) {
 //Connect everything
 export default connect(mapStateToProps, mapDispatchToProps)(Course);
 
-
-
 const styles = StyleSheet.create({
   sectionContainer: {
     paddingHorizontal: 24,
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
     color: colors.black,
   },
   sectionDescription: {
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: "400",
     color: colors.grey1,
   },
   buttonText: {
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: "400",
     color: colors.white,
   },
 });

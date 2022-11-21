@@ -4,15 +4,15 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
-// Navigation: react-router
-import { Link } from "react-router-native";
-// UI Elements  
+// UI Elements
 import { StyleSheet, ScrollView } from "react-native";
 import { Text, View, Button, Image } from "react-native";
+import { lightColors as colors } from "@rneui/themed";
 // third party UI libraries
-import { colors } from "react-native-elements";
-import { Container, Content,  Title } from "native-base";
-
+import { Container, Content } from "native-base";
+// 4Vientos Components
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 import Course from "./Course";
 
 class CoursesScreen extends React.Component {
@@ -22,7 +22,7 @@ class CoursesScreen extends React.Component {
       loading: false,
       courses: [],
     };
-    this.setState({ loading: true });
+    // this.setState({ loading: true });
     this.props.actions.loadCourses().catch((error) => {
       alert("Loading courses failed" + error);
     });
@@ -38,45 +38,53 @@ class CoursesScreen extends React.Component {
   render() {
     return (
       <Container>
-        <Header  navigation={this.props.navigation} />
+        <Header navigation={this.props.navigation} />
 
         <Content>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView} >
+            style={styles.scrollView}
+          >
             <View style={styles.body}>
               <View style={styles.sectionHeaderContainer}>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <Image source={require("../../../assets/images/brujula.png")} />
-                    <Text style={styles.sectionHeaderTitle}>
-                      Oferta formativa
-                    </Text>
-                </View>              
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <Image
+                    source={require("./../../../assets/images/brujula.png")}
+                  />
+                  <Text style={styles.sectionHeaderTitle}>
+                    Oferta formativa
+                  </Text>
+                </View>
                 <Text style={styles.sectionHeaderSubtitle}>
-              Listado de nuestra oferta educativa.
-            </Text>
-            <Button
-              title="Agregar nuevo curso"
-              onPress={() => this.props.navigation.navigate("Agregar curso")}
-            />
+                  Listado de nuestra oferta educativa.
+                </Text>
+                <Button
+                  title="Agregar nuevo curso"
+                  onPress={() =>
+                    this.props.navigation.navigate("Agregar curso")
+                  }
+                />
               </View>
               <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}>
-              {this.props.courses.map((course) => (
-                <Course key={course.id} {...course} navigation={this.props.navigation} />
-              ))}
-            </ScrollView>
+                contentInsetAdjustmentBehavior="automatic"
+                style={styles.scrollView}
+              >
+                {this.props.courses.map((course) => (
+                  <Course
+                    key={course.id}
+                    {...course}
+                    navigation={this.props.navigation}
+                  />
+                ))}
+              </ScrollView>
             </View>
           </ScrollView>
         </Content>
         <Footer />
-    </Container>
+      </Container>
     );
   }
 }
-
-
 
 function mapStateToProps(state) {
   return {
@@ -94,8 +102,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CoursesScreen);
 
 const styles = StyleSheet.create({
   sectionHeaderContainer: {
-
-    paddingHorizontal:  4,
+    paddingHorizontal: 4,
   },
   sectionHeaderTitle: {
     fontSize: 24,
